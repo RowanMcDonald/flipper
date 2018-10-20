@@ -815,6 +815,41 @@ Successful disabling of a percentage of time will set the percentage to 0 and re
 }
 ```
 
+### Check if a feature is enabled for an actor
+
+**URL**
+
+`GET /actors/{flipper_id}`
+
+**Parameters**
+
+* `keys` - comma-separated list of features to check
+
+**Request**
+
+```
+curl -X GET http://example.com/flipper/api/actors/user:1?keys=my_feature_1,my_feature_2
+```
+
+**Response**
+
+Returns whether the actor with the provided flipper_id is enabled or disabled for the specififed feature keys.
+If no keys are specified it returns all features.
+
+```json
+{
+	'flipper_id' => 'user:1',
+		'features' => {
+			'my_feature_1' => {
+				'enabled' => true,
+			},
+			'my_feature_2' => {
+				'enabled' => false,
+			}
+		}
+}
+```
+
 ## Errors
 In the event of an error the Flipper API will return an error object.  The error object will contain a Flipper-specific error code, an error message, and a link to documentation providing more information about the error.
 
